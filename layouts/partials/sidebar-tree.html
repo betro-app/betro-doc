@@ -23,7 +23,7 @@
   </div>
   <div id="content-desktop"></div>
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
-    {{ template "section-tree-nav-section" (dict "page" . "section" .Site.Home.CurrentSection "delayActive" $shouldDelayActive "indent" 0)  }}
+    {{ template "section-tree-nav-section" (dict "page" . "section" (.GetPage (index (split .Page.Dir "/") 0)) "delayActive" $shouldDelayActive "indent" 0)  }}
     <hr/>
     <div id = "toc"></div>
   </nav>
@@ -35,7 +35,7 @@
     {{ $shouldDelayActive := .delayActive }}
     {{ $indent := .indent }}
     {{ $active := eq $p.RelPermalink $s.RelPermalink }}
-    {{ $show := or ($p.IsAncestor $s) ($p.IsDescendant $s) }}
+    {{ $show := or ($s.IsAncestor $s) ($s.IsDescendant $s) }}
     {{ $sid := $s.RelPermalink | anchorize }}
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
