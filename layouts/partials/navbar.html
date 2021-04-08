@@ -13,16 +13,18 @@
 	</a>
 	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
 		<ul class="navbar-nav mt-2 mt-lg-0">
-
-			<li class="nav-item mr-4 mb-2 mb-lg-0"><a href="https://matrix.org/foundation/">Foundation</a>
+			{{ $p := . }}
+			{{ range .Site.Menus.main }}
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
+				{{ with .Page }}
+				{{ $active = or $active ( $.IsDescendant .)  }}
+				{{ end }}
+				{{ $url := urls.Parse .URL }}
+				{{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
+				<a {{ if .Identifier }}id="{{ .Identifier }}"{{ end }} {{if $active }} class="active"{{end}} href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}><span>{{ .Name }}</span></a>
 			</li>
-
-      <li class="nav-item mr-4 mb-2 mb-lg-0"><a href="https://matrix.org/faq/">FAQs</a>
-			</li>
-
-      <li class="nav-item mr-4 mb-2 mb-lg-0"><a href="https://matrix.org/blog/posts">Blog</a>
-      </li>
-
+			{{ end }}
 			{{ if  .Site.Params.versions }}
 			<li class="nav-item dropdown d-none d-lg-block">
 				{{ partial "navbar-version-selector.html" . }}
