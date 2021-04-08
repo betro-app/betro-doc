@@ -21,7 +21,7 @@
 {{ if ne $status "unstable" }}
 {{ $release_info := readFile (path.Join $path "release.yaml") | transform.Unmarshal }}
 <table class="release-info">
-<tr><th>Git commit</th><td><a href="https://github.com/matrix-org/matrix-doc/tree/{{ $release_info.tag }}">https://github.com/matrix-org/matrix-doc/tree/{{ $release_info.tag }}</a></td>
+<tr><th>Git commit</th><td><a href="https://github.com/prijindal/betro-doc/tree/{{ $release_info.tag }}">https://github.com/prijindal/betro-doc/tree/{{ $release_info.tag }}</a></td>
 <tr><th>Release date</th><td>{{ $release_info.date }}</td>
 </table>
 {{ end }}
@@ -73,7 +73,7 @@
 <li><strong>{{.name}}</strong>
 <p><ul>
         {{ range $changes_of_type }}
-<li><a href="https://github.com/matrix-org/matrix-doc/issues/{{.ticket}}"><strong>{{ .ticket }}: </strong></a>{{ .description | markdownify }}</li>
+<li><a href="https://github.com/prijindal/betro-doc/issues/{{.ticket}}"><strong>{{ .ticket }}: </strong></a>{{ .description | markdownify }}</li>
         {{ end }}
 </ul></p>
 </li>
