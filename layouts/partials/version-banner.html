@@ -12,11 +12,15 @@
 <div class="pageinfo pageinfo-{{ $color }} pageinfo-unstable">
   <p>You're looking at an unstable version of this specification.
   Unstable specifications may change at any time without notice.</p>
+  {{ if $latest_version }}
   <p><a href="{{ $latest_version | safeURL }}">Switch to the current stable release</a>.</p>
+  {{ end }}
 </div>
 {{ else if eq $status "historical" }}
 <div class="pageinfo pageinfo-{{ $color }}">
   <p>You're looking at an old version of this specification.<p>
+  {{ if $latest_version }}
   <p><a href="{{ $latest_version | safeURL }}">Switch to the current stable release</a>.</p>
+  {{ end }}
 </div>
 {{ end }}
