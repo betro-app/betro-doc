@@ -23,7 +23,7 @@
   </div>
   <div id="content-desktop"></div>
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
-    {{ template "section-tree-nav-section" (dict "page" . "section" (.GetPage (index (split .Page.Dir "/") 0)) "delayActive" $shouldDelayActive "indent" 0)  }}
+    {{ template "section-tree-nav-section" (dict "page" . "section" (.GetPage (index (split .File.Dir "/") 0)) "delayActive" $shouldDelayActive "indent" 0)  }}
     <hr/>
     <div id = "toc"></div>
   </nav>
